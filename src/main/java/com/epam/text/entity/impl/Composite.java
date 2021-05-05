@@ -4,6 +4,7 @@ import com.epam.text.entity.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -38,7 +39,7 @@ public class Composite implements Component {
 
     @Override
     public Component getChild(int index) {
-        logger.info("Composite -> getting child");
+        logger.info("Composite -> getting child by index {}", index);
         return components.get(index);
     }
 
@@ -50,10 +51,11 @@ public class Composite implements Component {
     }
 
     @Override
-    public String toString() { //fix
-        return "Composite{" +
-                "components=" + components +
-                ", compositeType=" + compositeType +
-                '}';
+    public String toString() {
+        StringJoiner stringJoiner = new StringJoiner(compositeType.getDelimiter(), compositeType.getPrefix(), "");
+        for (Component component : components) {
+            stringJoiner.add(component.toString());
+        }
+        return stringJoiner.toString();
     }
 }
