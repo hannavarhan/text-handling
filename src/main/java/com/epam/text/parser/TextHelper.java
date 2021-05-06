@@ -14,19 +14,19 @@ public class TextHelper {
     private static final String CHARACTER_REGEX = "\\S";
 
     public static List<String> getParagraphs(String data) {
-        return parse(data, PARAGRAPH_REGEX);
+        return getText(data, PARAGRAPH_REGEX);
     }
 
     public static List<String> getSentences(String data) {
-        return parse(data, SENTENCE_REGEX);
+        return getText(data, SENTENCE_REGEX);
     }
 
     public static List<String> getLexemes(String data) {
-        return parse(data, LEXEME_REGEX);
+        return getText(data, LEXEME_REGEX);
     }
 
     public static List<String> getWords(String data) {
-        return parse(data, WORD_REGEX);
+        return getText(data, WORD_REGEX);
     }
 
     public static List<Character> getCharacters(String data) {
@@ -40,7 +40,7 @@ public class TextHelper {
         return result;
     }
 
-    private static List<String> parse(String data, final String regex) {
+    private static List<String> getText(String data, final String regex) {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(data);
         List<String> result = new ArrayList<>();
