@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TextParser {
+public class TextHelper {
 
     private static final String PARAGRAPH_REGEX = "[^\\n\\t]+";
     private static final String SENTENCE_REGEX = "/([А-ЯA-Z]((!=|ob.)|[^?!.(]|\\([^)]*\\))*[.?!]{1,3})/gm";
@@ -13,23 +13,23 @@ public class TextParser {
     private static final String WORD_REGEX = "[\\\"\\wА-я']+(-[\\\"\\wА-я']+)*";
     private static final String CHARACTER_REGEX = "\\S";
 
-    public static List<String> parseParagraphs(String data) {
+    public static List<String> getParagraphs(String data) {
         return parse(data, PARAGRAPH_REGEX);
     }
 
-    public static List<String> parseSentences(String data) {
+    public static List<String> getSentences(String data) {
         return parse(data, SENTENCE_REGEX);
     }
 
-    public static List<String> parseLexemes(String data) {
+    public static List<String> getLexemes(String data) {
         return parse(data, LEXEME_REGEX);
     }
 
-    public static List<String> parseWords(String data) {
+    public static List<String> getWords(String data) {
         return parse(data, WORD_REGEX);
     }
 
-    public static List<Character> parseCharacters(String data) {
+    public static List<Character> getCharacters(String data) {
         Pattern pattern = Pattern.compile(CHARACTER_REGEX);
         Matcher matcher = pattern.matcher(data);
         List<Character> result = new ArrayList<>();

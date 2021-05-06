@@ -1,6 +1,6 @@
 package com.epam.text.entity.impl;
 
-import com.epam.text.entity.Component;
+import com.epam.text.entity.TextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,38 +9,38 @@ import java.util.StringJoiner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Composite implements Component {
+public class TextComposite implements TextComponent {
 
-    private ArrayList<Component> components = new ArrayList<>();
+    private final static Logger logger = LogManager.getLogger(TextComposite.class);
     private CompositeType compositeType;
-    private final static Logger logger = LogManager.getLogger(Composite.class);
+    private final List<TextComponent> textComponents = new ArrayList<>();
 
-    public Composite(CompositeType compositeType) {
+    public TextComposite(CompositeType compositeType) {
         this.compositeType = compositeType;
     }
 
     @Override
-    public List<Component> getList() {
+    public List<TextComponent> getChildList() {
         logger.info("Composite -> get list");
-        return components;
+        return textComponents;
     }
 
     @Override
-    public void add(Component component) {
+    public void add(TextComponent textComponent) {
         logger.info("Composite -> adding child");
-        components.add(component);
+        textComponents.add(textComponent);
     }
 
     @Override
-    public void remove(Component component) {
+    public void remove(TextComponent textComponent) {
         logger.info("Composite -> deleting child");
-        components.remove(component);
+        textComponents.remove(textComponent);
     }
 
     @Override
-    public Component getChild(int index) {
+    public TextComponent getChild(int index) {
         logger.info("Composite -> getting child by index {}", index);
-        return components.get(index);
+        return textComponents.get(index);
     }
 
     @Override
@@ -53,8 +53,8 @@ public class Composite implements Component {
     @Override
     public String toString() {
         StringJoiner stringJoiner = new StringJoiner(compositeType.getDelimiter(), compositeType.getPrefix(), "");
-        for (Component component : components) {
-            stringJoiner.add(component.toString());
+        for (TextComponent textComponent : textComponents) {
+            stringJoiner.add(textComponent.toString());
         }
         return stringJoiner.toString();
     }

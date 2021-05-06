@@ -1,7 +1,7 @@
 package com.epam.text.parser;
 
-import com.epam.text.entity.impl.Composite;
+import com.epam.text.entity.impl.TextComposite;
 
 public interface ChainParser {
-    Composite parse(String data);
+    TextComposite parse(String data);
 }

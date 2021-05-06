@@ -1,11 +1,11 @@
 package com.epam.text.parser.impl;
 
-import com.epam.text.entity.Component;
-import com.epam.text.entity.impl.CharacterLeaf;
-import com.epam.text.entity.impl.Composite;
+import com.epam.text.entity.TextComponent;
+import com.epam.text.entity.impl.SymbolLeaf;
+import com.epam.text.entity.impl.TextComposite;
 import com.epam.text.entity.impl.CompositeType;
 import com.epam.text.parser.ChainParser;
-import com.epam.text.parser.TextParser;
+import com.epam.text.parser.TextHelper;
 
 import java.util.List;
 
@@ -18,13 +18,13 @@ public class CharacterParser implements ChainParser {
     }
 
     @Override
-    public Composite parse(String data) {
-        List<Character> characterList = TextParser.parseCharacters(data);
-        Composite characterComposite = new Composite(CompositeType.WORD);
+    public TextComposite parse(String data) {
+        List<Character> characterList = TextHelper.getCharacters(data);
+        TextComposite characterTextComposite = new TextComposite(CompositeType.WORD);
         for (Character character : characterList) {
-            Component component = new CharacterLeaf(character);
-            characterComposite.add(component);
+            TextComponent textComponent = new SymbolLeaf(character);
+            characterTextComposite.add(textComponent);
         }
-        return characterComposite;
+        return characterTextComposite;
     }
 }

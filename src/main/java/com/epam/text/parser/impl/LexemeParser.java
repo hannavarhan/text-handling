@@ -1,9 +1,9 @@
 package com.epam.text.parser.impl;
 
-import com.epam.text.entity.impl.Composite;
+import com.epam.text.entity.impl.TextComposite;
 import com.epam.text.entity.impl.CompositeType;
 import com.epam.text.parser.ChainParser;
-import com.epam.text.parser.TextParser;
+import com.epam.text.parser.TextHelper;
 
 import java.util.List;
 
@@ -16,13 +16,13 @@ public class LexemeParser implements ChainParser {
     }
 
     @Override
-    public Composite parse(String data) {
-        List<String> lexemeList = TextParser.parseLexemes(data);
-        Composite lexemeComposite = new Composite(CompositeType.LEXEME);
+    public TextComposite parse(String data) {
+        List<String> lexemeList = TextHelper.getLexemes(data);
+        TextComposite lexemeTextComposite = new TextComposite(CompositeType.LEXEME);
         for (String lexeme : lexemeList) {
-            Composite nextComposite = nextParser.parse(lexeme);
-            lexemeComposite.add(nextComposite);
+            TextComposite nextTextComposite = nextParser.parse(lexeme);
+            lexemeTextComposite.add(nextTextComposite);
         }
-        return lexemeComposite;
+        return lexemeTextComposite;
     }
 }

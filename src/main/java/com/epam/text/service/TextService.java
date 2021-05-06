@@ -1,6 +1,6 @@
 package com.epam.text.service;
 
-import com.epam.text.entity.impl.Composite;
+import com.epam.text.entity.impl.TextComposite;
 import com.epam.text.exception.CompositeException;
 
 import java.util.List;
@@ -8,15 +8,15 @@ import java.util.Map;
 
 public interface TextService {
 
-    String paragraphSort(Composite composite);
+    String paragraphSort(TextComposite textComposite);
 
-    List<String> findLongWordSentences(Composite composite) throws CompositeException;
+    List<String> findLongWordSentences(TextComposite textComposite) throws CompositeException;
 
-    List<String> removeSentences(Composite composite, int wordAmount);
+    List<String> removeSentences(TextComposite textComposite, int wordAmount);
 
-    Map<String, Integer> countSameWords(Composite composite);
+    Map<String, Integer> countSameWords(TextComposite textComposite);
 
-    int countVowel(Composite composite);
+    int countVowel(TextComposite textComposite);
 
-    int countConsonant(Composite composite);
+    int countConsonant(TextComposite textComposite);
 }

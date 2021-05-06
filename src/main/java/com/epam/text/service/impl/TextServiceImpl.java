@@ -1,10 +1,9 @@
 package com.epam.text.service.impl;
 
-import com.epam.text.entity.Component;
-import com.epam.text.entity.impl.Composite;
+import com.epam.text.entity.impl.TextComposite;
 import com.epam.text.entity.impl.CompositeType;
 import com.epam.text.exception.CompositeException;
-import com.epam.text.parser.TextParser;
+import com.epam.text.parser.TextHelper;
 import com.epam.text.service.TextService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,43 +17,43 @@ public class TextServiceImpl implements TextService {
     private final static Logger logger = LogManager.getLogger(TextServiceImpl.class);
 
     @Override
-    public String paragraphSort(Composite composite) {
+    public String paragraphSort(TextComposite textComposite) {
         return null;
     }
 
     @Override
-    public List<String> findLongWordSentences(Composite composite) throws CompositeException { //to do
-        if (composite == null) {
+    public List<String> findLongWordSentences(TextComposite textComposite) throws CompositeException { //to do
+        if (textComposite == null) {
             logger.error("Exception in findLongWordSentences because composite is null");
             throw new CompositeException("Exception in findLongWordSentences");
-        } else if (composite.getType() != CompositeType.PARAGRAPH) {
+        } else if (textComposite.getType() != CompositeType.PARAGRAPH) {
             logger.error("Exception in findLongWordSentences: required CompositeType.PARAGRAPH, but found {}",
-                    composite.getType());
+                    textComposite.getType());
             throw new CompositeException("Exception in findLongWordSentences");
         }
-        String text = composite.toString();
-        List<String> words = TextParser.parseWords(text);
+        String text = textComposite.toString();
+        List<String> words = TextHelper.getWords(text);
         words.sort(Comparator.comparing(String::length));
         return null;
     }
 
     @Override
-    public List<String> removeSentences(Composite composite, int wordAmount) {
+    public List<String> removeSentences(TextComposite textComposite, int wordAmount) {
         return null;
     }
 
     @Override
-    public Map<String, Integer> countSameWords(Composite composite) {
+    public Map<String, Integer> countSameWords(TextComposite textComposite) {
         return null;
     }
 
     @Override
-    public int countVowel(Composite composite) {
+    public int countVowel(TextComposite textComposite) {
         return 0;
     }
 
     @Override
-    public int countConsonant(Composite composite) {
+    public int countConsonant(TextComposite textComposite) {
         return 0;
     }
 }

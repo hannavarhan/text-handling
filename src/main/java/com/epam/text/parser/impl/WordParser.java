@@ -1,9 +1,9 @@
 package com.epam.text.parser.impl;
 
-import com.epam.text.entity.impl.Composite;
+import com.epam.text.entity.impl.TextComposite;
 import com.epam.text.entity.impl.CompositeType;
 import com.epam.text.parser.ChainParser;
-import com.epam.text.parser.TextParser;
+import com.epam.text.parser.TextHelper;
 
 import java.util.List;
 
@@ -16,13 +16,13 @@ public class WordParser implements ChainParser {
     }
 
     @Override
-    public Composite parse(String data) {
-        List<String> wordList = TextParser.parseWords(data);
-        Composite wordComposite = new Composite(CompositeType.WORD);
+    public TextComposite parse(String data) {
+        List<String> wordList = TextHelper.getWords(data);
+        TextComposite wordTextComposite = new TextComposite(CompositeType.WORD);
         for (String word : wordList) {
-            Composite nextComposite = nextParser.parse(word);
-            wordComposite.add(nextComposite);
+            TextComposite nextTextComposite = nextParser.parse(word);
+            wordTextComposite.add(nextTextComposite);
         }
-        return wordComposite;
+        return wordTextComposite;
     }
 }

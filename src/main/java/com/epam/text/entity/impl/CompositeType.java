@@ -6,7 +6,8 @@ public enum CompositeType {
     SENTENCE(" ", ""),
     LEXEME(" ", ""),
     WORD("", ""),
-    CHARACTER("", "");
+    SYMBOL("", ""),
+    PUNCTUATION("", "");
 
     private final String delimiter;
     private final String prefix;
