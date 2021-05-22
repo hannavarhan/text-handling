@@ -1,27 +1,19 @@
 package com.epam.text.parser.impl;
 
-import com.epam.text.entity.impl.TextComposite;
 import com.epam.text.entity.impl.CompositeType;
-import com.epam.text.parser.ChainParser;
-import com.epam.text.parser.TextHelper;
+import com.epam.text.entity.impl.TextComposite;
+import com.epam.text.parser.AbstractTextParser;
+import com.epam.text.parser.TextParserHelper;
 
-import java.util.List;
-
-public class LexemeParser implements ChainParser {
-
-    private ChainParser nextParser;
-
-    public LexemeParser(ChainParser nextParser) {
-        this.nextParser = nextParser;
-    }
+public class LexemeParser extends AbstractTextParser {
 
     @Override
     public TextComposite parse(String data) {
-        List<String> lexemeList = TextHelper.getLexemes(data);
+        String[] lexemeList = TextParserHelper.getLexemes(data);
         TextComposite lexemeTextComposite = new TextComposite(CompositeType.LEXEME);
-        for (String lexeme : lexemeList) {
-            TextComposite nextTextComposite = nextParser.parse(lexeme);
-            lexemeTextComposite.add(nextTextComposite);
+        for(String lexeme : lexemeList) {
+            TextComposite nextComposite = nextParser.parse(lexeme);
+            lexemeTextComposite.add(nextComposite);
         }
         return lexemeTextComposite;
     }

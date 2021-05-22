@@ -45,6 +45,12 @@ public class SymbolLeaf implements TextComponent {
     }
 
     @Override
+    public int getChildListSize() {
+        logger.warn("Unsupported getChildListSize operation in CharacterLeaf");
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public String toString() {
         return String.valueOf(character);
     }

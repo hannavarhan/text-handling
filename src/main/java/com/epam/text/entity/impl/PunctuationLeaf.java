@@ -45,6 +45,12 @@ public class PunctuationLeaf implements TextComponent {
     }
 
     @Override
+    public int getChildListSize() {
+        logger.warn("Unsupported getChildListSize operation in PunctuationLeaf");
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public String toString() {
         return String.valueOf(punctuation);
     }

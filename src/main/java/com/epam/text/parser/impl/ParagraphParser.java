@@ -1,23 +1,17 @@
 package com.epam.text.parser.impl;
 
-import com.epam.text.entity.impl.TextComposite;
 import com.epam.text.entity.impl.CompositeType;
-import com.epam.text.parser.ChainParser;
-import com.epam.text.parser.TextHelper;
+import com.epam.text.entity.impl.TextComposite;
+import com.epam.text.parser.AbstractTextParser;
+import com.epam.text.parser.TextParserHelper;
 
 import java.util.List;
 
-public class ParagraphParser implements ChainParser {
-
-    private ChainParser nextParser;
-
-    public ParagraphParser(ChainParser nextParser) {
-        this.nextParser = nextParser;
-    }
+public class ParagraphParser extends AbstractTextParser {
 
     @Override
     public TextComposite parse(String data) {
-        List<String> paragraphList = TextHelper.getParagraphs(data);
+        List<String> paragraphList = TextParserHelper.getParagraphs(data);
         TextComposite paragraphTextComposite = new TextComposite(CompositeType.PARAGRAPH);
         for (String paragraph : paragraphList) {
             TextComposite nextTextComposite = nextParser.parse(paragraph);
@@ -26,4 +20,5 @@ public class ParagraphParser implements ChainParser {
         return paragraphTextComposite;
 
     }
+
 }

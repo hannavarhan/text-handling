@@ -3,6 +3,7 @@ package com.epam.text.entity.impl;
 import com.epam.text.entity.TextComponent;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -26,8 +27,14 @@ public class TextComposite implements TextComponent {
     }
 
     @Override
+    public int getChildListSize() {
+        logger.info("Composite -> get getChildListSize: {}", textComponents.size());
+        return textComponents.size();
+    }
+
+    @Override
     public void add(TextComponent textComponent) {
-        logger.info("Composite -> adding child");
+        //logger.info("Composite -> adding child");
         textComponents.add(textComponent);
     }
 
@@ -57,5 +64,13 @@ public class TextComposite implements TextComponent {
             stringJoiner.add(textComponent.toString());
         }
         return stringJoiner.toString();
+    }
+
+    public static class SentenceAmountComparator implements Comparator<TextComponent> {
+
+        @Override
+        public int compare(TextComponent t1, TextComponent t2) {
+            return Integer.compare(t1.getChildListSize(), t2.getChildListSize());
+        }
     }
 }

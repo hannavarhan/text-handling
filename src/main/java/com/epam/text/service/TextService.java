@@ -8,7 +8,7 @@ import java.util.Map;
 
 public interface TextService {
 
-    String paragraphSort(TextComposite textComposite);
+    String paragraphSort(TextComposite textComposite) throws CompositeException;
 
     List<String> findLongWordSentences(TextComposite textComposite) throws CompositeException;
 

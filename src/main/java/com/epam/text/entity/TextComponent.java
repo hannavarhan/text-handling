@@ -14,4 +14,6 @@ public interface TextComponent {
     CompositeType getType();
 
     List<TextComponent> getChildList();
+
+    int getChildListSize();
 }
